@@ -1,16 +1,18 @@
-name: Hello
+name: Unit Tests
 
 on:
-  pull-request:
-    branches: [ main ]
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [master]
+
 jobs:
-  test:
+  Jest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
-      - run: npm install
-      - run: npm test
+      - uses: actions/checkout@v1
+      - name: Run Tests
+        run: |
+          npm install
+          npm test
